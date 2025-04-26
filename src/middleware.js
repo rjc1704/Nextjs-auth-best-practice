@@ -15,8 +15,12 @@ export function middleware(request) {
   const isAuthRoute = authPaths.some((path) => pathname === path);
 
   // 인증 요구 경로 목록 관리 (실제 URL 기준)
+  const isEditRoute = /^\/blogs\/[0-9]+\/edit/.test(pathname); // blogs/1/edit 형식의 경로 확인
+  /** @TODO 인증 필요 경로를 명확하게 지정하세요 */
   const protectedRoutes = ["/blogs", "/profile"];
   // 경로와 모든 하위 경로 포함
+
+  /** @TODO 인증 필요 경로 여부 파악 시 isEditRoute 추가하고 하위 경로 포함로직 제거하세요 */
   const isProtectedRoute = protectedRoutes.some(
     (route) => pathname === route || pathname.startsWith(`${route}/`),
   );
